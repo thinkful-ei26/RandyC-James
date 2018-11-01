@@ -12,7 +12,7 @@ function init(){
         console.log('submit fired');
     
         const userItemInput = $('input').val();
-
+      
         $('input').val('');
     
         //add a new <li> 
@@ -21,7 +21,14 @@ function init(){
         //console.log(userItemInput);
  
     });
- 
+    //event listener for check button toggle from ul using event delegation
+    $('.shopping-list').on('click', 'button', function(event){
+      if(event.target.innerHTML === 'check'){
+        doCheckedItem(event);
+      } else if (event.target.innerHTML === 'delete'){
+        doDeleteItem(event);
+      }
+    });
 }
 
 function addListItem(newListValue){
@@ -45,10 +52,15 @@ function addListItem(newListValue){
     `);
  
     $('.shopping-list').append(oldList);
-
-
-
 }
 
- 
+function doCheckedItem(userDataObject){
+  const parent = $(userDataObject.currentTarget).parent('.shopping-item-controls');
+  const uncle = parent.prev();
+  uncle.toggleClass('shopping-item__checked');
+}
+
+function doDeleteItem(parameter){
+  console.log("Line 67 fired, do delete func");
+}
 
