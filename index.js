@@ -20,7 +20,8 @@ function init(){
     //event listener for button from ul using event delegation
     $('.shopping-list').on('click', 'button', function(event){
       if(event.target.innerHTML === 'check'){
-        doCheckedItem(event);
+        const divElement = $(this).parent('.shopping-item-controls');
+        doCheckedItem(divElement);
       } else if (event.target.innerHTML === 'delete'){
         doDeleteItem(event);
       }
@@ -50,10 +51,9 @@ function addListItem(newListValue){
     $('.shopping-list').append(oldList);
 }
 
-function doCheckedItem(userDataObject){
-  const parent = $(userDataObject.currentTarget).parent('.shopping-item-controls');
-  const uncle = parent.prev();
-  uncle.toggleClass('shopping-item__checked');
+function doCheckedItem(passedInDiv){
+  const elementSpan = passedInDiv.prev();
+  elementSpan.toggleClass('shopping-item__checked');
 }
 
 function doDeleteItem(listItemToBeDeleted){
