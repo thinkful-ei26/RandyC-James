@@ -8,8 +8,6 @@ function init(){
     $('button[type ="submit"]').on('click',function(event){
 
         event.preventDefault();
-     
-        console.log('submit fired');
     
         const userItemInput = $('input').val();
       
@@ -17,11 +15,9 @@ function init(){
     
         //add a new <li> 
         addListItem(userItemInput);
-
-        //console.log(userItemInput);
  
     });
-    //event listener for check button toggle from ul using event delegation
+    //event listener for button from ul using event delegation
     $('.shopping-list').on('click', 'button', function(event){
       if(event.target.innerHTML === 'check'){
         doCheckedItem(event);
@@ -60,7 +56,12 @@ function doCheckedItem(userDataObject){
   uncle.toggleClass('shopping-item__checked');
 }
 
-function doDeleteItem(parameter){
-  console.log("Line 67 fired, do delete func");
+function doDeleteItem(listItemToBeDeleted){
+ 
+  const listItem = $(listItemToBeDeleted.target).closest( 'li' );
+  
+  listItem.remove();
+
+
 }
 
